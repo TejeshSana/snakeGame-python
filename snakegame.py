@@ -25,12 +25,12 @@ pygame.display.update()
 
 
 #background image for home screen
-bg_img = pygame.image.load("imgs&music/logo.png")
+bg_img = pygame.image.load("logo.png")
 bg_img = pygame.transform.scale(bg_img,(screen_width,screen_height)).convert_alpha()
 
 
 #background image for game over
-bg_img_1 = pygame.image.load("imgs&music/game.png")
+bg_img_1 = pygame.image.load("game.png")
 bg_img_1 = pygame.transform.scale(bg_img_1,(screen_width,screen_height)).convert_alpha()
 
 
@@ -90,14 +90,14 @@ def game_loop():
 
     #check if hiscore file exists
     if (not os.path.exists("hiscore.txt")):
-        with open("imgs&music/hiscore.txt","w") as f:
+        with open("hiscore.txt","w") as f:
             f.write("0")
-    with open("imgs&music/hiscore.txt","r") as f:
+    with open("hiscore.txt","r") as f:
        hiscore = f.read()
 
     while not exitGame:
         if game_over:
-            with open("imgs&music/hiscore.txt","w") as f:
+            with open("hiscore.txt","w") as f:
                  f.write(str(hiscore))
             gameWindow.blit(bg_img_1,(0,0))
            
@@ -149,11 +149,11 @@ def game_loop():
             if len(snake_list)>snake_length:
                 del snake_list[0]
             if head in snake_list[:-1]:
-                pygame.mixer.music.load('imgs&music/beep.mp3')
+                pygame.mixer.music.load('beep.mp3')
                 pygame.mixer.music.play()
                 game_over = True
             if snake_x<0 or snake_x>screen_width or snake_y<0 or snake_y>screen_height:
-                pygame.mixer.music.load('imgs&music/beep.mp3')
+                pygame.mixer.music.load('beep.mp3')
                 pygame.mixer.music.play()
                 game_over=True
             #pygame.draw.rect(gameWindow,black,[snake_x,snake_y,snake_size,snake_size])
